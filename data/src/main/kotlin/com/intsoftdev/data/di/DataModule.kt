@@ -5,12 +5,15 @@ import com.intsoftdev.data.cache.PostsCache
 import com.intsoftdev.data.cache.PostsCacheImpl
 import com.intsoftdev.data.cache.PostsDatabase
 import com.intsoftdev.data.network.PostsProxyService
+import com.intsoftdev.data.preferences.PreferencesHelper
 import com.intsoftdev.data.repository.PostsRepositoryImpl
 import com.intsoftdev.domain.PostsRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.datetime.Clock
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -60,5 +63,9 @@ val dataModule = module {
         ).build()
     }
 
-    factory<PostsCache> { PostsCacheImpl(get()) }
+    factory<PostsCache> { PostsCacheImpl(get(), get(), get()) }
+
+    factory { PreferencesHelper(androidContext()) }
+
+    factory<Clock> { Clock.System }
 }

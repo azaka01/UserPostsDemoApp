@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.intsoftdev.domain.PostModel
 import com.intsoftdev.domain.ResultState
+import com.intsoftdev.userpostsdemoapp.R
 import com.intsoftdev.userpostsdemoapp.databinding.FragmentUserPostsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class UserPostsFragment : Fragment(), (PostModel) -> Unit  {
 
-    protected val userPostsViewModel: UserPostsViewModel by viewModel()
+    private val userPostsViewModel: UserPostsViewModel by viewModel()
     private lateinit var userPostsAdapter: UserPostsAdapter
 
     private var _binding: FragmentUserPostsBinding? = null
@@ -28,14 +29,12 @@ class UserPostsFragment : Fragment(), (PostModel) -> Unit  {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Timber.d("onCreateView enter")
         _binding = FragmentUserPostsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("onViewCreated enter")
         setupObservers()
         setupUI()
         userPostsViewModel.getUserPosts()
@@ -51,7 +50,7 @@ class UserPostsFragment : Fragment(), (PostModel) -> Unit  {
                     hideLoadingStates()
                     Toast.makeText(
                         requireContext(),
-                        "Unable to download data",
+                        getString(R.string.download_error),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -73,18 +72,13 @@ class UserPostsFragment : Fragment(), (PostModel) -> Unit  {
     }
 
     private fun setupUI() {
+        activity?.title = "User Posts"
         userPostsAdapter  = UserPostsAdapter(arrayListOf(), this)
         with(binding.recyclerView) {
+            visibility = View.GONE
             this.layoutManager = LinearLayoutManager(requireContext())
-            addItemDecoration(
-                DividerItemDecoration(
-                    context,
-                    (layoutManager as LinearLayoutManager).orientation
-                )
-            )
             this.adapter = userPostsAdapter
         }
-
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             userPostsViewModel.getUserPosts()

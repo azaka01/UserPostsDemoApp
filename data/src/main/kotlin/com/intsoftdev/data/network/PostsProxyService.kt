@@ -2,6 +2,7 @@ package com.intsoftdev.data.network
 
 import com.intsoftdev.domain.PostComments
 import com.intsoftdev.domain.PostModel
+import com.intsoftdev.domain.PostUser
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,4 +15,7 @@ internal interface PostsProxyService {
 
     @GET("comments/")
     suspend fun getComments(@Query("postId") postId: String): List<PostComments>
+
+    @GET("users")
+    suspend fun getUsers(): List<PostUser>
 }

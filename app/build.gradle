@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'androidx.navigation.safeargs'
+}
+
+apply from: '../common/android.gradle'
+apply from: '../common/dependencies.gradle'
+
+android {
+
+    defaultConfig {
+        applicationId "com.intsoftdev.userpostsdemoapp"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':data')
+    implementation coroutinesKtx
+    implementation koinLib
+    implementation koinAndroid
+    implementation navUILib
+    implementation navFragLib
+    implementation lifeExtLib
+    implementation corektx
+    implementation materialLib
+    implementation constraintLib
+    implementation timberLib
+    implementation swipeLib
+
+    testImplementation testjunit
+    testImplementation mockitoKotlin
+    testImplementation mockitoInline
+    testImplementation archXCore
+    testImplementation kotlinTest
+    testImplementation coroutinesTest
+}

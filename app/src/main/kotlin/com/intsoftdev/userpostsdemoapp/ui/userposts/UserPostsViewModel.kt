@@ -19,7 +19,6 @@ class UserPostsViewModel(
     val postsLiveData = MutableLiveData<PostsResults>()
 
     fun getUserPosts() {
-        Timber.d("getUserPosts enter")
         viewModelScope.launch(dispatcher) {
             postsRepository.getUserPosts()
                 .catch { throwable ->
@@ -28,11 +27,10 @@ class UserPostsViewModel(
                 }.collect { postsResult ->
                     when (postsResult) {
                         is ResultState.Success -> {
-                            Timber.d("ResultState.Success")
                             postsLiveData.postValue(postsResult)
                         }
                         is ResultState.Failure -> {
-                            Timber.d("ResultState.Failure ${postsResult.error!!}")
+                            Timber.e(postsResult.error)
                             postsLiveData.postValue(ResultState.Failure(postsResult.error))
                         }
                     }

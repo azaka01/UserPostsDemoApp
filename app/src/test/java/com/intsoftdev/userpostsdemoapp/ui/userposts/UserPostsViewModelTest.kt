@@ -44,7 +44,6 @@ class UserPostsViewModelTest {
         testDispatcher.cleanupTestCoroutines()
     }
 
-    @ExperimentalCoroutinesApi
     @Test
     fun `given repository when api returns posts then handled`() = runBlockingTest {
         // given

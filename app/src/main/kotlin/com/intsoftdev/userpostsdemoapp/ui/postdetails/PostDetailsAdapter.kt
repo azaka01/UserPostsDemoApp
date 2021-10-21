@@ -4,14 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.intsoftdev.domain.PostComments
-import com.intsoftdev.domain.PostModel
 import com.intsoftdev.userpostsdemoapp.databinding.PostDetailsItemBinding
-import com.intsoftdev.userpostsdemoapp.databinding.PostsRowLayoutBinding
 
 class PostDetailsAdapter(
     private val comments: ArrayList<PostComments>
-) :
-    RecyclerView.Adapter<PostDetailsAdapter.CommentsViewHolder>() {
+) : RecyclerView.Adapter<PostDetailsAdapter.CommentsViewHolder>() {
 
     inner class CommentsViewHolder(private val itemBinding: PostDetailsItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {

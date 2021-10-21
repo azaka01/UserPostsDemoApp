@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">UserPostsDemoApp</string>
+    <string name="download_error">"Unable to download data"</string>
 </resources>

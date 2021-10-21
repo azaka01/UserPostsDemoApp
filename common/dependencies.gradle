@@ -5,49 +5,43 @@ ext {
 
     // UI
     coreKtxVersion = "1.3.2"
-    recyclerViewVersion = "1.1.0-rc01"
-    appCompatVersion = '1.2.0'
+    recyclerViewVersion = "1.2"
     materialVersion = '1.3.0'
-    constraintLayoutVersion = '2.0.4'
+    constraintLayoutVersion = '2.1.1'
     swipeLayoutVersion = '1.0.0'
 
     // DI
     koin = "3.1.2"
 
-    coroutines = "1.3.9"
+    coroutines = "1.5.2"
 
     // network
-    retrofit = "2.7.1"
-    okHttp = "4.4.0"
-    rxjava = "2.2.18"
-    rxandroid = "2.1.1"
+    retrofit = "2.9.0"
+    okHttp = "4.9.1"
     httpLoggingVersion = "4.4.0"
 
     gson =  "2.8.5"
     gsonConverter = "2.3.0"
 
     // database
-    roomVersion = "2.2.5"
+    roomVersion = "2.3.0"
 
     junitVersion = "4.13"
 
     mockitoKotlinVersion = "2.2.0"
     mockitoVersion = "3.2.4"
-    mockkVersion = '1.9.3'
     archCoreTestingVersion = '2.1.0'
     coroutinesTestVersion = '1.5.1'
     timberVersion = '4.7.1'
 
     ktxVersion = '2.3.4'
     ktxExtensionsVersion = '2.2.0'
-    legacyLibVersion = '1.0.0'
     lifeExtVersion = '2.2.0'
     activityKtxVersion = '1.2.1'
 
     kotlinlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     recyclerView = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     corektx = "androidx.core:core-ktx:$coreKtxVersion"
-    appcompatLib = "androidx.appcompat:appcompat:$appCompatVersion"
     materialLib = "com.google.android.material:material:$materialVersion"
     constraintLib = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     swipeLib = "androidx.swiperefreshlayout:swiperefreshlayout:$swipeLayoutVersion"
@@ -57,7 +51,6 @@ ext {
     navUILib = "androidx.navigation:navigation-ui-ktx:$ktxVersion"
     navFragLib = "androidx.navigation:navigation-fragment-ktx:$ktxVersion"
     lifeExtLib = "androidx.lifecycle:lifecycle-extensions:$lifeExtVersion"
-    legacyLib = "androidx.legacy:legacy-support-v4:$legacyLibVersion"
     activityKtxLib = "androidx.activity:activity-ktx:$activityKtxVersion"
 
     // coroutines
@@ -72,7 +65,6 @@ ext {
     gsonConverterLib      = "com.squareup.retrofit2:converter-gson:$gsonConverter"
 
     retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:$retrofit"
-    retrofitRxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
     httpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$httpLoggingVersion"
 
     // di
@@ -84,15 +76,18 @@ ext {
     roomLib               =  "androidx.room:room-runtime:$roomVersion"
     roomAnnotationProcessor = "androidx.room:room-compiler:$roomVersion" // For Kotlin use kapt instead of annotationProcessor
 
+    kotlinxDateTimeLib = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.0"
+
     // testing libraries
     testjunit = "junit:junit:$junitVersion"
 
     mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     mockitoInline = "org.mockito:mockito-inline:$mockitoVersion"
-    mockkTest = "io.mockk:mockk:$mockkVersion"
     kotlinTest = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
     archXCore = "androidx.arch.core:core-testing:$archCoreTestingVersion"
 
     androidXJunit = 'androidx.test.ext:junit:1.1.2'
+
+    turbineLib = 'app.cash.turbine:turbine:0.6.1'
 }

@@ -19,7 +19,7 @@ class PostDetailsViewModel(
     val commentsLiveData = MutableLiveData<CommentsResults>()
 
     fun getPostComments(postId: String) {
-        Timber.d("getPostComments $postId enter")
+        Timber.d("getPostComments for post $postId")
         viewModelScope.launch(dispatcher) {
             postsRepository.getPostComments(postId)
                 .catch { throwable ->
@@ -28,11 +28,10 @@ class PostDetailsViewModel(
                 }.collect { postsResult ->
                     when (postsResult) {
                         is ResultState.Success -> {
-                            Timber.d("ResultState.Success")
                             commentsLiveData.postValue(postsResult)
                         }
                         is ResultState.Failure -> {
-                            Timber.d("ResultState.Failure ${postsResult.error!!}")
+                            Timber.e(postsResult.error)
                             commentsLiveData.postValue(ResultState.Failure(postsResult.error))
                         }
                     }

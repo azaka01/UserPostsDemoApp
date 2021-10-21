@@ -7,37 +7,32 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.intsoftdev.domain.PostComments
-import com.intsoftdev.domain.PostModel
 import com.intsoftdev.domain.ResultState
+import com.intsoftdev.userpostsdemoapp.R
 import com.intsoftdev.userpostsdemoapp.databinding.FragmentPostDetailsBinding
-import com.intsoftdev.userpostsdemoapp.ui.userposts.UserPostsAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class PostDetailsFragment : Fragment() {
 
     private val args: PostDetailsFragmentArgs by navArgs()
     private lateinit var postDetailsAdapter: PostDetailsAdapter
-    protected val postDetailsViewModel: PostDetailsViewModel by viewModel()
+    private val postDetailsViewModel: PostDetailsViewModel by viewModel()
 
     private var _binding: FragmentPostDetailsBinding? = null
-
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Timber.d("onCreateView enter")
         _binding = FragmentPostDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("onViewCreated enter")
         setupObservers()
         setupUI()
         postDetailsViewModel.getPostComments(args.postId)
@@ -53,7 +48,7 @@ class PostDetailsFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(
                         requireContext(),
-                        "Unable to download data",
+                        getString(R.string.download_error),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -62,20 +57,15 @@ class PostDetailsFragment : Fragment() {
     }
 
     private fun setupUI() {
-        postDetailsAdapter  = PostDetailsAdapter(arrayListOf())
+        postDetailsAdapter = PostDetailsAdapter(arrayListOf())
         with(binding.detailsRecyclerView) {
             this.layoutManager = LinearLayoutManager(requireContext())
-            addItemDecoration(
-                DividerItemDecoration(
-                    context,
-                    (layoutManager as LinearLayoutManager).orientation
-                )
-            )
             this.adapter = postDetailsAdapter
         }
     }
 
     private fun updateUI(comments: List<PostComments>) {
+        activity?.title = "Comments (${comments.size})"
         binding.detailsRecyclerView.visibility = View.VISIBLE
         binding.progressBar.visibility = View.GONE
         postDetailsAdapter.apply {
