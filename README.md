@@ -3,7 +3,7 @@
 A Demo App to display posts and comments from an API service https://jsonplaceholder.typicode.com/ 
 
 ## About
-The Demo App is written entirely in Kotlin and requires minimum Android API 21+.
+The Demo App is written entirely in Kotlin and requires minimum Android API 23 (6.0).
 
 Developed using Android Studio Arctic Fox | 2020.3.1 Patch 2 with Gradle 7.0.2
 
